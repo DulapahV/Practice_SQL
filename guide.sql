@@ -1,7 +1,18 @@
 /*
+Order by
+1. SELECT - column_name(s)
+2. FROM - table_name
+3. WHERE - condition(s)
+4. GROUP BY - column_name(s)
+5. HAVING - condition(s)
+6. ORDER BY - column_name(s)
+7. LIMIT - number of rows;
+
 
 **[key] is considered column 0 which isn't normally used to "set" but rather used to "get" reference
+**WHERE can't be used with aggregate function
 
+=====
 SELECT [column] FROM [table];
 
 [column] is used to select column to get data (use , to seperate in case you want more than 1 column)
@@ -95,5 +106,36 @@ DELETE FROM customers WHERE customerID = 61;
 SELECT COUNT ([column n]) FROM CustomerID WHERE [key] = [Value]
 
 for exmaple,
+SELECT COUNT (FirstName) FROM customers WHERE City = 'Paris';
 
+=====
+>> AVG (Average)
+SELECT AVG [(column)] FROM [table];
+
+for example, 
+SELECT AVG (total) FROM invoices;
+
+=====
+>> SUM
+SELECT SUM ([column]) FROM [table];
+
+for example,
+SELECT SUM (total) FROM invoices;
+
+=====
+>> min/max
+SELECT min/max ([column]) FROM [table];
+
+for example,
+SELECT min (total) FROM invoices;
+
+=====
+SELECT COUNT ([key]), [colummn1] FROM [table] GROUP BY [Column1]
+
+Show number of key are in column1 from table and group by column1
+
+
+for example,
+SELECT COUNT (CustomerID), city FROM customers GROUP BY City
+SELECT COUNT (CustomerID) AS Qrt, Country FROM customers GROUP BY Country ORDER BY Qrt DESC;
 */
