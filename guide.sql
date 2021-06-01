@@ -51,7 +51,7 @@ SELECT LastName FROM customers WHERE Country = 'Canada' or Country = 'USA';
 
 
 =====
->> ORDER BY [column to order] (DESC)
+>> ORDER BY [column to order] (DESC/ASC)
 SELECT [column] FROM [table] WHERE [key] = [value] ORDER BY [column to order] (DESC);
 
 [column to order] will be arranged in ascending order
@@ -138,4 +138,67 @@ Show number of key are in column1 from table and group by column1
 for example,
 SELECT COUNT (CustomerID), city FROM customers GROUP BY City
 SELECT COUNT (CustomerID) AS Qrt, Country FROM customers GROUP BY Country ORDER BY Qrt DESC;
+
+=====
+>> NOT
+SELECT [column] FROM [table] WHERE NOT [column] = "[data in column]";
+
+for example,
+SELECT * FROM employees WHERE NOT Title = "IT Staff";
+
+=====
+>> IN
+SELECT [column] FROM [table] WHERE [column] IN ("[data in column]", "[data in column]", ...)
+
+for example,
+SELECT * FROM employees WHERE Title IN ("Sales Support Agent", "Sales Manager", "General Manager")
+
+=====
+>> LIKE
+SELECT [column] FROM [table] WHERE [column] LIKE "[requirement to be same]%"
+
+for example,
+SELECT * FROM customers WHERE FirstName LIKE "A%" select all people whose firstname starts with "A" but can be followed by anything
+SELECT * FROM customers WHERE FirstName LIKE "%a" select all people whose firstname ends with "A" but can be perceded by anything
+SELECT * FROM customers WHERE FirstName LIKE "%a%" select all people whose firstname contains "a" character
+SELECT * FROM customers WHERE FirstName LIKE "%a%t" select all people whose firstname starts with "a" and ends with "t"
+
+=====
+>> BETWEEN
+SELECT [column] FROM [table] WHERE [column] BETWEEN [value1] AND [value2]
+
+for example,
+SELECT * FROM customers WHERE NOT CustomerID BETWEEN 10 AND 35
+SELECT * FROM customers WHERE NOT CustomerID BETWEEN 10 AND 35 AND Country IN ("Brazil", "Czech Republic")
+
+=====
+SELECT [column] FROM [table] WHERE [column] IS NULL;
+
+See what information is blank
+
+for example,
+SELECT * FROM customers WHERE Phone IS NULL;
+SELECT * FROM customers WHERE Phone IS NOT NULL;
+
+=====
+AND / OR
+SELECT [column] FROM [table] WHERE [column1] = "[data in column1]" OR/AND [column2] = "[data in column2]"
+
+for example,
+SELECT * FROM customers WHERE Country = "Brazil" OR State = "SP";
+
+=====
+>> INNER JOIN
+SELECT [table1].[column in table1], [table2].[column in table2] FROM [table1] INNER JOIN [table2] ON [table1].[column in table1] = [column in table2]
+
+for example,
+SELECT * FROM invoices INNER JOIN customers ON invoices.CustomerID = customers.CustomerID ORDER BY InvoiceID ASC;
+SELECT Orders.OrderID, Cutsomers.CustomerName FROM Orders INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID
+SELECT invoices.InvoiceID, customers FirstName, customers,LastName, invoices.Total FROM invoices INNER JOIN customers ON invoices.CustomerID = customers.CustomerID ORDER BY InvoiceID ASC;
+
+=====
+>> LEFT JOIN
+
+=====
+>>
 */
